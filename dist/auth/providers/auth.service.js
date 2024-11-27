@@ -12,30 +12,21 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersController = void 0;
+exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const users_servive_1 = require("./providers/users.servive");
-const get_user_params_dto_1 = require("./dto/get-user-params.dto");
-let UsersController = class UsersController {
+const users_servive_1 = require("../../users/providers/users.servive");
+let AuthService = class AuthService {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    getUsers(getUserParamDto, limit, page) {
-        return this.usersService.findAll(getUserParamDto, limit, page);
+    isAuth() {
+        return true;
     }
 };
-exports.UsersController = UsersController;
-__decorate([
-    (0, common_1.Get)('/:id?'),
-    __param(0, (0, common_1.Param)()),
-    __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(10), common_1.ParseIntPipe)),
-    __param(2, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [get_user_params_dto_1.GetUserParamDto, Number, Number]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "getUsers", null);
-exports.UsersController = UsersController = __decorate([
-    (0, common_1.Controller)('users'),
+exports.AuthService = AuthService;
+exports.AuthService = AuthService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => users_servive_1.UsersService))),
     __metadata("design:paramtypes", [users_servive_1.UsersService])
-], UsersController);
-//# sourceMappingURL=users.controller.js.map
+], AuthService);
+//# sourceMappingURL=auth.service.js.map

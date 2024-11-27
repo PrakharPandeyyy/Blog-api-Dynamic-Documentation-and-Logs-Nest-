@@ -8,6 +8,7 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true, //no additional data apart from that in dto can be added , it get stripped of before getting processed
       // forbidNonWhitelisted , this can also be used
+      transform: true, // tranforms the incoming request to the instance of dto class after validation
     }),
   ); // setting validation pipes globally
   await app.listen(3000);
