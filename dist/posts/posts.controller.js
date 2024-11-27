@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const posts_service_1 = require("./providers/posts.service");
 const swagger_1 = require("@nestjs/swagger");
 const create_post_dto_1 = require("./dto/create-post.dto");
+const patch_post_dto_1 = require("../users/dto/patch-post.dto");
 let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
@@ -24,15 +25,30 @@ let PostsController = class PostsController {
     createPost(createPostDto) {
         console.log(createPostDto);
     }
+    updatePost(patchPostsDto) {
+        console.log(patchPostsDto);
+    }
 };
 exports.PostsController = PostsController;
 __decorate([
+    (0, swagger_1.ApiResponse)({
+        status: 201,
+        description: 'You get 201 response if the post is created',
+    }),
+    (0, swagger_1.ApiOperation)({ summary: 'Create a post' }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "createPost", null);
+__decorate([
+    (0, common_1.Patch)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [patch_post_dto_1.PatchPostDto]),
+    __metadata("design:returntype", void 0)
+], PostsController.prototype, "updatePost", null);
 exports.PostsController = PostsController = __decorate([
     (0, swagger_1.ApiTags)('Posts'),
     (0, common_1.Controller)('posts'),
