@@ -10,7 +10,13 @@ async function bootstrap() {
         whitelist: true,
         transform: true,
     }));
-    const config = new swagger_1.DocumentBuilder().setVersion('1.0').build();
+    const config = new swagger_1.DocumentBuilder()
+        .setTitle('NestJs Blog Api')
+        .setDescription('Use the base API URL as http://localhost:3000')
+        .setTermsOfService('https://localhost:3000/terms-of-service')
+        .addServer('http://localhost:3000')
+        .setVersion('1.0')
+        .build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('api', app, document);
     await app.listen(3000);

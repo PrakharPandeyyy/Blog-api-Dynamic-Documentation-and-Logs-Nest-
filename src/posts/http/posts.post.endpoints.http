@@ -1,0 +1,17 @@
+POST  http://localhost:3000/posts
+Content-Type: application/json
+{
+  "title": "Hello World",
+  "postType": "post",
+  "slug": "hello-world",
+  "status": "draft",
+    "content": "Hello World",
+    "tags": ["hello", "world"],
+    "metaOptions":[{
+        "key": "author",
+        "value": "John Doe"
+    }]
+    
+
+
+}

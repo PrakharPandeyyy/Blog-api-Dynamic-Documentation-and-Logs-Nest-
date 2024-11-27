@@ -16,6 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_servive_1 = require("./providers/users.servive");
 const get_user_params_dto_1 = require("./dto/get-user-params.dto");
+const swagger_1 = require("@nestjs/swagger");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -27,6 +28,27 @@ let UsersController = class UsersController {
 exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Get)('/:id?'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Fetches a list of registed users on the application',
+    }),
+    (0, swagger_1.ApiResponse)({
+        status: 200,
+        description: 'User fetched Successfullt based on the querry',
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'limit',
+        type: 'number',
+        required: false,
+        description: 'Number of entries returned per queries.',
+        example: 10,
+    }),
+    (0, swagger_1.ApiQuery)({
+        name: 'page',
+        type: 'number',
+        required: false,
+        description: 'The Position of page number that you want api to return.',
+        example: 1,
+    }),
     __param(0, (0, common_1.Param)()),
     __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(10), common_1.ParseIntPipe)),
     __param(2, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
@@ -36,6 +58,7 @@ __decorate([
 ], UsersController.prototype, "getUsers", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
+    (0, swagger_1.ApiTags)('Users'),
     __metadata("design:paramtypes", [users_servive_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map
