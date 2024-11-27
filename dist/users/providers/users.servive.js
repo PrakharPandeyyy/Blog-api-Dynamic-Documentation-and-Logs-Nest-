@@ -20,8 +20,6 @@ let UsersService = class UsersService {
         this.authService = authService;
     }
     findAll(getUserParamDto, limit, page) {
-        const isAuth = this.authService.isAuth();
-        console.log(isAuth);
         return [
             {
                 firstName: 'John',

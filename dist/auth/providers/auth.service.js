@@ -19,9 +19,6 @@ let AuthService = class AuthService {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    isAuth() {
-        return true;
-    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
