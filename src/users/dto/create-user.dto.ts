@@ -8,7 +8,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class CreateUser {
+export class createUserDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(3)
@@ -18,6 +18,7 @@ export class CreateUser {
   @IsString()
   @IsOptional()
   @MinLength(3)
+  @MaxLength(96)
   lastName?: string;
 
   @IsEmail()
@@ -28,6 +29,7 @@ export class CreateUser {
   @IsString()
   @IsNotEmpty()
   @MinLength(8)
+  @MaxLength(96)
   @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
     message: 'Password too weak',
   })

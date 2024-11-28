@@ -1,1 +1,1 @@
-{"version":3,"file":"patch-user.dto.js","sourceRoot":"","sources":["../../../src/users/dto/patch-user.dto.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,uDAA+C;AAE/C,MAAa,YAAa,SAAQ,IAAA,0BAAW,EAAC,4BAAU,CAAC;CAAG;AAA5D,oCAA4D"}
+{"version":3,"file":"patch-user.dto.js","sourceRoot":"","sources":["../../../src/users/dto/patch-user.dto.ts"],"names":[],"mappings":";;;AAAA,uDAAmD;AACnD,uDAAkD;AAElD,MAAa,YAAa,SAAQ,IAAA,0BAAW,EAAC,+BAAa,CAAC;CAAG;AAA/D,oCAA+D"}

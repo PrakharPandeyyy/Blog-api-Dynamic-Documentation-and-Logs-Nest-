@@ -9,37 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUser = void 0;
+exports.createUserDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateUser {
+class createUserDto {
 }
-exports.CreateUser = CreateUser;
+exports.createUserDto = createUserDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.MinLength)(3),
     (0, class_validator_1.MaxLength)(96),
     __metadata("design:type", String)
-], CreateUser.prototype, "firstName", void 0);
+], createUserDto.prototype, "firstName", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.MinLength)(3),
+    (0, class_validator_1.MaxLength)(96),
     __metadata("design:type", String)
-], CreateUser.prototype, "lastName", void 0);
+], createUserDto.prototype, "lastName", void 0);
 __decorate([
     (0, class_validator_1.IsEmail)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.MaxLength)(96),
     __metadata("design:type", String)
-], CreateUser.prototype, "email", void 0);
+], createUserDto.prototype, "email", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.MinLength)(8),
+    (0, class_validator_1.MaxLength)(96),
     (0, class_validator_1.Matches)(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/, {
         message: 'Password too weak',
     }),
     __metadata("design:type", String)
-], CreateUser.prototype, "password", void 0);
+], createUserDto.prototype, "password", void 0);
 //# sourceMappingURL=create-user.dto.js.map

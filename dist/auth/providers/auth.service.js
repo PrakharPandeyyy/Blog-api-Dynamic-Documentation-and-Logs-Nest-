@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const users_servive_1 = require("../../users/providers/users.servive");
+const users_service_1 = require("../../users/providers/users.service");
 let AuthService = class AuthService {
     constructor(usersService) {
         this.usersService = usersService;
@@ -23,7 +23,7 @@ let AuthService = class AuthService {
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => users_servive_1.UsersService))),
-    __metadata("design:paramtypes", [users_servive_1.UsersService])
+    __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => users_service_1.UsersService))),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

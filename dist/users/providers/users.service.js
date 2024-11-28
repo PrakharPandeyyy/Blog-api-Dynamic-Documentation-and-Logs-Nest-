@@ -23,6 +23,14 @@ let UsersService = class UsersService {
         this.userRepository = userRepository;
         this.authService = authService;
     }
+    async createUser(createUserDto) {
+        const existingUser = await this.userRepository.findOne({
+            where: { email: createUserDto.email },
+        });
+        let newUser = this.userRepository.create(createUserDto);
+        newUser = await this.userRepository.save(newUser);
+        return newUser;
+    }
     findAll(getUserParamDto, limit, page) {
         return [
             {
@@ -51,4 +59,4 @@ exports.UsersService = UsersService = __decorate([
     __metadata("design:paramtypes", [typeorm_1.Repository,
         auth_service_1.AuthService])
 ], UsersService);
-//# sourceMappingURL=users.servive.js.map
+//# sourceMappingURL=users.service.js.map

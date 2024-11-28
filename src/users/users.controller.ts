@@ -1,14 +1,17 @@
 import {
+  Body,
   Controller,
   DefaultValuePipe,
   Get,
   Param,
   ParseIntPipe,
+  Post,
   Query,
 } from '@nestjs/common';
-import { UsersService } from './providers/users.servive';
+import { UsersService } from './providers/users.service';
 import { GetUserParamDto } from './dto/get-user-params.dto';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { createUserDto } from './dto/create-user.dto';
 
 @Controller('users')
 @ApiTags('Users')
@@ -43,5 +46,9 @@ export class UsersController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
   ) {
     return this.usersService.findAll(getUserParamDto, limit, page);
+  }
+  @Post()
+  public createUsers(@Body() createUserDto: createUserDto) {
+    return this.usersService.createUser(createUserDto);
   }
 }

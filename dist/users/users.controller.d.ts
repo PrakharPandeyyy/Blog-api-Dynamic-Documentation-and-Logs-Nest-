@@ -1,5 +1,6 @@
-import { UsersService } from './providers/users.servive';
+import { UsersService } from './providers/users.service';
 import { GetUserParamDto } from './dto/get-user-params.dto';
+import { createUserDto } from './dto/create-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
@@ -7,4 +8,5 @@ export declare class UsersController {
         firstName: string;
         email: string;
     }[];
+    createUsers(createUserDto: createUserDto): Promise<import("./entities/user.entity").User>;
 }

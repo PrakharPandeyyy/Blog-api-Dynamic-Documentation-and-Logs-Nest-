@@ -1,4 +1,4 @@
-import { UsersService } from 'src/users/providers/users.servive';
+import { UsersService } from 'src/users/providers/users.service';
 export declare class AuthService {
     private readonly usersService;
     constructor(usersService: UsersService);
