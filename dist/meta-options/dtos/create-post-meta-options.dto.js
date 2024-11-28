@@ -15,13 +15,8 @@ class CreatePostMetaOptionsDto {
 }
 exports.CreatePostMetaOptionsDto = CreatePostMetaOptionsDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsJSON)(),
     __metadata("design:type", String)
-], CreatePostMetaOptionsDto.prototype, "key", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreatePostMetaOptionsDto.prototype, "value", void 0);
+], CreatePostMetaOptionsDto.prototype, "metaValue", void 0);
 //# sourceMappingURL=create-post-meta-options.dto.js.map

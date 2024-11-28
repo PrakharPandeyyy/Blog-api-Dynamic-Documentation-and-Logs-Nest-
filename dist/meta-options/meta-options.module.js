@@ -6,21 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostsModule = void 0;
+exports.MetaOptionsModule = void 0;
 const common_1 = require("@nestjs/common");
-const posts_service_1 = require("./providers/posts.service");
-const posts_controller_1 = require("./posts.controller");
+const meta_options_controller_1 = require("./meta-options.controller");
 const typeorm_1 = require("@nestjs/typeorm");
-const users_module_1 = require("../users/users.module");
-const post_entity_1 = require("./entities/post-entity");
-let PostsModule = class PostsModule {
+const meta_option_entity_1 = require("./meta-option.entity");
+let MetaOptionsModule = class MetaOptionsModule {
 };
-exports.PostsModule = PostsModule;
-exports.PostsModule = PostsModule = __decorate([
+exports.MetaOptionsModule = MetaOptionsModule;
+exports.MetaOptionsModule = MetaOptionsModule = __decorate([
     (0, common_1.Module)({
-        providers: [posts_service_1.PostsService],
-        controllers: [posts_controller_1.PostsController],
-        imports: [users_module_1.UsersModule, typeorm_1.TypeOrmModule.forFeature([post_entity_1.Post])],
+        controllers: [meta_options_controller_1.MetaOptionsController],
+        imports: [typeorm_1.TypeOrmModule.forFeature([meta_option_entity_1.MetaOption])],
     })
-], PostsModule);
-//# sourceMappingURL=posts.module.js.map
+], MetaOptionsModule);
+//# sourceMappingURL=meta-options.module.js.map

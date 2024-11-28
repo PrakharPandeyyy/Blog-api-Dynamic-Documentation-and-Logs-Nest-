@@ -6,21 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PostsModule = void 0;
+exports.TagsModule = void 0;
 const common_1 = require("@nestjs/common");
-const posts_service_1 = require("./providers/posts.service");
-const posts_controller_1 = require("./posts.controller");
+const tags_controller_1 = require("./tags.controller");
 const typeorm_1 = require("@nestjs/typeorm");
-const users_module_1 = require("../users/users.module");
-const post_entity_1 = require("./entities/post-entity");
-let PostsModule = class PostsModule {
+const tag_entity_1 = require("./tag.entity");
+let TagsModule = class TagsModule {
 };
-exports.PostsModule = PostsModule;
-exports.PostsModule = PostsModule = __decorate([
+exports.TagsModule = TagsModule;
+exports.TagsModule = TagsModule = __decorate([
     (0, common_1.Module)({
-        providers: [posts_service_1.PostsService],
-        controllers: [posts_controller_1.PostsController],
-        imports: [users_module_1.UsersModule, typeorm_1.TypeOrmModule.forFeature([post_entity_1.Post])],
+        controllers: [tags_controller_1.TagsController],
+        imports: [typeorm_1.TypeOrmModule.forFeature([tag_entity_1.Tag])],
     })
-], PostsModule);
-//# sourceMappingURL=posts.module.js.map
+], TagsModule);
+//# sourceMappingURL=tags.module.js.map

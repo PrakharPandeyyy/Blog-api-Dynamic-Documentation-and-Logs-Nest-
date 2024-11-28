@@ -13,7 +13,7 @@ exports.CreatePostDto = void 0;
 const class_validator_1 = require("class-validator");
 const postStatus_enum_1 = require("../enums/postStatus.enum");
 const postType_enum_1 = require("../enums/postType.enum");
-const create_post_meta_options_dto_1 = require("./create-post-meta-options.dto");
+const create_post_meta_options_dto_1 = require("../../meta-options/dtos/create-post-meta-options.dto");
 const class_transformer_1 = require("class-transformer");
 const swagger_1 = require("@nestjs/swagger");
 class CreatePostDto {
@@ -26,6 +26,7 @@ __decorate([
     }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.MinLength)(4),
+    (0, class_validator_1.MaxLength)(512),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreatePostDto.prototype, "title", void 0);
@@ -46,6 +47,7 @@ __decorate([
     }),
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.MaxLength)(256),
     (0, class_validator_1.Matches)(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, {
         message: 'A Slug should be all small and separated by hyphens',
     }),
@@ -86,6 +88,7 @@ __decorate([
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsUrl)(),
+    (0, class_validator_1.MaxLength)(1024),
     __metadata("design:type", String)
 ], CreatePostDto.prototype, "featureImageUrl", void 0);
 __decorate([
