@@ -13,6 +13,7 @@ exports.Post = void 0;
 const typeorm_1 = require("typeorm");
 const postType_enum_1 = require("../enums/postType.enum");
 const postStatus_enum_1 = require("../enums/postStatus.enum");
+const meta_option_entity_1 = require("../../meta-options/meta-option.entity");
 let Post = class Post {
 };
 exports.Post = Post;
@@ -84,6 +85,11 @@ __decorate([
     }),
     __metadata("design:type", Date)
 ], Post.prototype, "publishedOn", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => meta_option_entity_1.MetaOption),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", meta_option_entity_1.MetaOption)
+], Post.prototype, "metaOptions", void 0);
 exports.Post = Post = __decorate([
     (0, typeorm_1.Entity)()
 ], Post);
