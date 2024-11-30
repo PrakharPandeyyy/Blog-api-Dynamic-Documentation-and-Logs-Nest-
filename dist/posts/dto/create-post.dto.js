@@ -113,33 +113,21 @@ __decorate([
 ], CreatePostDto.prototype, "tags", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        type: 'array',
         required: false,
         items: {
             type: 'object',
             properties: {
-                key: {
-                    type: 'string',
-                    example: 'key1',
-                },
-                value: {
-                    type: 'string',
-                    example: 'value1',
+                metavalue: {
+                    type: 'json',
+                    description: 'The metaValue is a JSON string',
+                    example: '{"sidebarEnable":true}',
                 },
             },
         },
-        description: 'Meta options for the post',
-        example: [
-            {
-                key: 'key1',
-                value: 'value1',
-            },
-        ],
     }),
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsArray)(),
     (0, class_validator_1.ValidateNested)({ each: true }),
     (0, class_transformer_1.Type)(() => create_post_meta_options_dto_1.CreatePostMetaOptionsDto),
-    __metadata("design:type", Array)
+    __metadata("design:type", create_post_meta_options_dto_1.CreatePostMetaOptionsDto)
 ], CreatePostDto.prototype, "metaOptions", void 0);
 //# sourceMappingURL=create-post.dto.js.map

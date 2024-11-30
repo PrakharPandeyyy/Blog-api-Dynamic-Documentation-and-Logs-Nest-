@@ -12,28 +12,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MetaOptionsController = void 0;
+exports.MetaOptionsService = void 0;
 const common_1 = require("@nestjs/common");
-const meta_options_service_1 = require("./providers/meta-options.service");
-const create_post_meta_options_dto_1 = require("./dtos/create-post-meta-options.dto");
-let MetaOptionsController = class MetaOptionsController {
-    constructor(metaOptionsService) {
-        this.metaOptionsService = metaOptionsService;
+const create_post_meta_options_dto_1 = require("../dtos/create-post-meta-options.dto");
+const typeorm_1 = require("@nestjs/typeorm");
+const meta_option_entity_1 = require("../meta-option.entity");
+const typeorm_2 = require("typeorm");
+let MetaOptionsService = class MetaOptionsService {
+    constructor(metaOptionsRepository) {
+        this.metaOptionsRepository = metaOptionsRepository;
     }
-    create(createPostMetaOptionsDto) {
-        return this.metaOptionsService.create(createPostMetaOptionsDto);
+    async create(createPostMetaOptionsDto) {
+        const metaOption = this.metaOptionsRepository.create(createPostMetaOptionsDto);
+        return await this.metaOptionsRepository.save(metaOption);
     }
 };
-exports.MetaOptionsController = MetaOptionsController;
+exports.MetaOptionsService = MetaOptionsService;
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_post_meta_options_dto_1.CreatePostMetaOptionsDto]),
-    __metadata("design:returntype", void 0)
-], MetaOptionsController.prototype, "create", null);
-exports.MetaOptionsController = MetaOptionsController = __decorate([
-    (0, common_1.Controller)('meta-options'),
-    __metadata("design:paramtypes", [meta_options_service_1.MetaOptionsService])
-], MetaOptionsController);
-//# sourceMappingURL=meta-options.controller.js.map
+    __metadata("design:returntype", Promise)
+], MetaOptionsService.prototype, "create", null);
+exports.MetaOptionsService = MetaOptionsService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(meta_option_entity_1.MetaOption)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
+], MetaOptionsService);
+//# sourceMappingURL=meta-options.service.js.map

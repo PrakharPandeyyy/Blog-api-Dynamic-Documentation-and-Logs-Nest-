@@ -8,7 +8,6 @@ import {
   IsString,
   IsUrl,
   Matches,
-  Max,
   MaxLength,
   MinLength,
   ValidateNested,
@@ -104,32 +103,20 @@ export class CreatePostDto {
   tags?: string[];
 
   @ApiPropertyOptional({
-    type: 'array',
     required: false,
     items: {
       type: 'object',
       properties: {
-        key: {
-          type: 'string',
-          example: 'key1',
-        },
-        value: {
-          type: 'string',
-          example: 'value1',
+        metavalue: {
+          type: 'json',
+          description: 'The metaValue is a JSON string',
+          example: '{"sidebarEnable":true}',
         },
       },
     },
-    description: 'Meta options for the post',
-    example: [
-      {
-        key: 'key1',
-        value: 'value1',
-      },
-    ],
   })
   @IsOptional()
-  @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CreatePostMetaOptionsDto)
-  metaOptions?: CreatePostMetaOptionsDto[];
+  metaOptions?: CreatePostMetaOptionsDto | null;
 }

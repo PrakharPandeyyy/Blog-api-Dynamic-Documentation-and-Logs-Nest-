@@ -11,6 +11,7 @@ const common_1 = require("@nestjs/common");
 const meta_options_controller_1 = require("./meta-options.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const meta_option_entity_1 = require("./meta-option.entity");
+const meta_options_service_1 = require("./providers/meta-options.service");
 let MetaOptionsModule = class MetaOptionsModule {
 };
 exports.MetaOptionsModule = MetaOptionsModule;
@@ -18,6 +19,7 @@ exports.MetaOptionsModule = MetaOptionsModule = __decorate([
     (0, common_1.Module)({
         controllers: [meta_options_controller_1.MetaOptionsController],
         imports: [typeorm_1.TypeOrmModule.forFeature([meta_option_entity_1.MetaOption])],
+        providers: [meta_options_service_1.MetaOptionsService],
     })
 ], MetaOptionsModule);
 //# sourceMappingURL=meta-options.module.js.map

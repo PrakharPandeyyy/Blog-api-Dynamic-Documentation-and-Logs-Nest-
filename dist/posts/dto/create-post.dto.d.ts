@@ -11,5 +11,5 @@ export declare class CreatePostDto {
     featureImageUrl?: string;
     publishOn?: Date;
     tags?: string[];
-    metaOptions?: CreatePostMetaOptionsDto[];
+    metaOptions?: CreatePostMetaOptionsDto | null;
 }

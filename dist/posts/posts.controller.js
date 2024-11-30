@@ -23,7 +23,7 @@ let PostsController = class PostsController {
         this.postsService = postsService;
     }
     createPost(createPostDto) {
-        console.log(createPostDto);
+        return this.postsService.create(createPostDto);
     }
     updatePost(patchPostsDto) {
         console.log(patchPostsDto);

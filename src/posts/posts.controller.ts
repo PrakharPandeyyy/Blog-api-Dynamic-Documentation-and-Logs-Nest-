@@ -15,7 +15,7 @@ export class PostsController {
   @ApiOperation({ summary: 'Create a post' })
   @Post()
   public createPost(@Body() createPostDto: CreatePostDto) {
-    console.log(createPostDto);
+    return this.postsService.create(createPostDto);
   }
   @Patch()
   public updatePost(@Body() patchPostsDto: PatchPostDto) {
