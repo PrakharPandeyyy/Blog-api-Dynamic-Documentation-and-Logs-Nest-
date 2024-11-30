@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MetaOption = void 0;
+const post_entity_1 = require("../posts/entities/post-entity");
 const typeorm_1 = require("typeorm");
 let MetaOption = class MetaOption {
 };
@@ -30,6 +31,13 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], MetaOption.prototype, "updateDate", void 0);
+__decorate([
+    (0, typeorm_1.OneToOne)(() => post_entity_1.Post, (post) => post.metaOptions, {
+        onDelete: 'CASCADE',
+    }),
+    (0, typeorm_1.JoinColumn)(),
+    __metadata("design:type", post_entity_1.Post)
+], MetaOption.prototype, "post", void 0);
 exports.MetaOption = MetaOption = __decorate([
     (0, typeorm_1.Entity)()
 ], MetaOption);

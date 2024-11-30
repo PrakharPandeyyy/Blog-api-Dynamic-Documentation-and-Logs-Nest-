@@ -22,14 +22,27 @@ let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
     }
+    getPosts(userId) {
+        return this.postsService.findAll(userId);
+    }
     createPost(createPostDto) {
         return this.postsService.create(createPostDto);
     }
     updatePost(patchPostsDto) {
         console.log(patchPostsDto);
     }
+    deletePost(id) {
+        return this.postsService.delete(id);
+    }
 };
 exports.PostsController = PostsController;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Param)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], PostsController.prototype, "getPosts", null);
 __decorate([
     (0, swagger_1.ApiResponse)({
         status: 201,
@@ -49,6 +62,13 @@ __decorate([
     __metadata("design:paramtypes", [patch_post_dto_1.PatchPostDto]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "updatePost", null);
+__decorate([
+    (0, common_1.Delete)(),
+    __param(0, (0, common_1.Query)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], PostsController.prototype, "deletePost", null);
 exports.PostsController = PostsController = __decorate([
     (0, swagger_1.ApiTags)('Posts'),
     (0, common_1.Controller)('posts'),

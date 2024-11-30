@@ -4,6 +4,7 @@ import { CreatePostDto } from '../dto/create-post.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Post } from '../entities/post-entity';
 import { Repository } from 'typeorm';
+import { MetaOption } from 'src/meta-options/meta-option.entity';
 
 @Injectable()
 export class PostsService {
@@ -17,11 +18,28 @@ export class PostsService {
      */
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
+    /**
+     *Injecting the repository for the Meta Options entity
+     */
+    @InjectRepository(MetaOption)
+    private readonly metaOptionsRepository: Repository<MetaOption>,
   ) {}
-  public async create(@Body() createPostDto: CreatePostDto) {
-    //creating meta options
-
+  async create(createPostDto: CreatePostDto) {
     const post = this.postsRepository.create(createPostDto);
     return await this.postsRepository.save(post);
+  }
+  async findAll(userId: string) {
+    const user = this.usersService.findOneById(+userId);
+    const posts = await this.postsRepository.find({
+      relations: {
+        metaOptions: true, // <--- This is the relation that we want to load
+      },
+    });
+    return posts;
+  }
+
+  async delete(id: number) {
+    await this.postsRepository.delete({ id });
+    return { deleted: true, id };
   }
 }

@@ -72,9 +72,13 @@ export class Post {
 
   tags?: string[];
 
-  @OneToOne(() => MetaOption, {
-    cascade: true, //  it is important to specify the cascade option to save the related entity
-  }) // it is important to specify the type of the relation and the related entity and it acts as a primary key
-  @JoinColumn() // it is important to specify the column that will be used as a foreign key
+  @OneToOne(
+    () => MetaOption,
+    (metaOption) => metaOption.post, // Inverse Relationship // bidirectional relationship // to load the relation and the other option if for  teeling the entity that metaOptions lies on the Post entity
+    {
+      cascade: true, //  it is important to specify the cascade option to save the related entity
+      eager: true, // it is important to specify the eager option to load the related entity  along with the main entity
+    },
+  ) // it is important to specify the type of the relation and the related entity and it acts as a primary key
   metaOptions?: MetaOption;
 }
