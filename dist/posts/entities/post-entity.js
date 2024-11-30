@@ -86,7 +86,9 @@ __decorate([
     __metadata("design:type", Date)
 ], Post.prototype, "publishedOn", void 0);
 __decorate([
-    (0, typeorm_1.OneToOne)(() => meta_option_entity_1.MetaOption),
+    (0, typeorm_1.OneToOne)(() => meta_option_entity_1.MetaOption, {
+        cascade: true,
+    }),
     (0, typeorm_1.JoinColumn)(),
     __metadata("design:type", meta_option_entity_1.MetaOption)
 ], Post.prototype, "metaOptions", void 0);

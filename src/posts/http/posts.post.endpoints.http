@@ -3,7 +3,7 @@ Content-Type: application/json
 {
   "title": "Hello World",
   "postType": "post",
-  "slug": "hello-india",
+  "slug": "hello-india-a",
   "status": "draft",
   "content": "Hello World",
     // "tags": ["hello", "world"],

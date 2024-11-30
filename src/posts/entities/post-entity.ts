@@ -72,7 +72,9 @@ export class Post {
 
   tags?: string[];
 
-  @OneToOne(() => MetaOption) // it is important to specify the type of the relation and the related entity and it acts as a primary key
+  @OneToOne(() => MetaOption, {
+    cascade: true, //  it is important to specify the cascade option to save the related entity
+  }) // it is important to specify the type of the relation and the related entity and it acts as a primary key
   @JoinColumn() // it is important to specify the column that will be used as a foreign key
   metaOptions?: MetaOption;
 }
