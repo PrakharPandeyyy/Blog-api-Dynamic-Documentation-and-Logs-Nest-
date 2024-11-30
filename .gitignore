@@ -5,7 +5,7 @@ packages/*/package-lock.json
 documentation
 # dependencies
 node_modules/
-
+dist
 # IDE
 /.idea
 /.awcache
