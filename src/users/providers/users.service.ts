@@ -19,8 +19,6 @@ export class UsersService {
 
     @Inject(forwardRef(() => AuthService)) // for circular dependency
     private readonly authService: AuthService,
-
-    private readonly configService: ConfigService, // for using Config Service
   ) {}
 
   /**

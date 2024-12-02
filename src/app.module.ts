@@ -8,7 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { appConfig } from './config/app.config';
+import appConfig from './config/app.config';
+import databaseConfig from './config/database.config';
+import enviromentValidation from './config/enviroment.validation';
 
 const ENV = process.env.NODE_ENV;
 @Module({
@@ -19,7 +21,8 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig], //  this is used to load the appConfig from the config folder so that we can use it in the app module
+      load: [appConfig, databaseConfig], //  this is used to load the appConfig from the config folder so that we can use it in the app module
+      validationSchema: enviromentValidation,
     }),
     /**
      * TypeOrmModule.forRootAsync() is used to configure the database connection
