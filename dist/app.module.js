@@ -18,6 +18,8 @@ const tags_module_1 = require("./tags/tags.module");
 const meta_options_module_1 = require("./meta-options/meta-options.module");
 const config_1 = require("@nestjs/config");
 const app_config_1 = require("./config/app.config");
+const database_config_1 = require("./config/database.config");
+const enviroment_validation_1 = require("./config/enviroment.validation");
 const ENV = process.env.NODE_ENV;
 let AppModule = class AppModule {
 };
@@ -31,7 +33,8 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-                load: [app_config_1.appConfig],
+                load: [app_config_1.default, database_config_1.default],
+                validationSchema: enviroment_validation_1.default,
             }),
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],

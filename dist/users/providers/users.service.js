@@ -18,12 +18,10 @@ const auth_service_1 = require("../../auth/providers/auth.service");
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("../entities/user.entity");
 const typeorm_2 = require("@nestjs/typeorm");
-const config_1 = require("@nestjs/config");
 let UsersService = class UsersService {
-    constructor(userRepository, authService, configService) {
+    constructor(userRepository, authService) {
         this.userRepository = userRepository;
         this.authService = authService;
-        this.configService = configService;
     }
     async createUser(createUserDto) {
         const existingUser = await this.userRepository.findOne({
@@ -55,7 +53,6 @@ exports.UsersService = UsersService = __decorate([
     __param(0, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
     __param(1, (0, common_1.Inject)((0, common_1.forwardRef)(() => auth_service_1.AuthService))),
     __metadata("design:paramtypes", [typeorm_1.Repository,
-        auth_service_1.AuthService,
-        config_1.ConfigService])
+        auth_service_1.AuthService])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
