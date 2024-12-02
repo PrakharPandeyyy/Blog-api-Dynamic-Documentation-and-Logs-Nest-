@@ -12,7 +12,7 @@ export declare class Post {
     content?: string;
     schema?: string;
     featuredImageUrl?: string;
-    publishedOn?: Date;
+    publishOn?: Date;
     metaOptions?: MetaOption;
     author: User;
     tags?: Tag[];

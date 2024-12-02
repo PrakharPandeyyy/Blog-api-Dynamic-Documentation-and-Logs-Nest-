@@ -90,7 +90,7 @@ __decorate([
     (0, class_validator_1.IsUrl)(),
     (0, class_validator_1.MaxLength)(1024),
     __metadata("design:type", String)
-], CreatePostDto.prototype, "featureImageUrl", void 0);
+], CreatePostDto.prototype, "featuredImageUrl", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
         description: 'Date when the post should be published',

@@ -86,7 +86,7 @@ __decorate([
         nullable: true,
     }),
     __metadata("design:type", Date)
-], Post.prototype, "publishedOn", void 0);
+], Post.prototype, "publishOn", void 0);
 __decorate([
     (0, typeorm_1.OneToOne)(() => meta_option_entity_1.MetaOption, (metaOption) => metaOption.post, {
         cascade: true,
@@ -101,7 +101,9 @@ __decorate([
     __metadata("design:type", user_entity_1.User)
 ], Post.prototype, "author", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => tag_entity_1.Tag),
+    (0, typeorm_1.ManyToMany)(() => tag_entity_1.Tag, (tag) => tag.posts, {
+        eager: true,
+    }),
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
 ], Post.prototype, "tags", void 0);

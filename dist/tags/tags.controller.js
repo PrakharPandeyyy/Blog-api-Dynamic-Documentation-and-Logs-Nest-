@@ -14,7 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TagsController = void 0;
 const common_1 = require("@nestjs/common");
-const tags_service_1 = require("./tags.service");
+const tags_service_1 = require("./providers/tags.service");
 const create_tag_dto_1 = require("./dtos/create-tag.dto");
 let TagsController = class TagsController {
     constructor(tagsService) {
@@ -22,6 +22,12 @@ let TagsController = class TagsController {
     }
     async create(createTagDto) {
         return this.tagsService.create(createTagDto);
+    }
+    async delete(id) {
+        return this.tagsService.delete(id);
+    }
+    async softDelete(id) {
+        return this.tagsService.softRemove(id);
     }
 };
 exports.TagsController = TagsController;
@@ -32,6 +38,20 @@ __decorate([
     __metadata("design:paramtypes", [create_tag_dto_1.CreateTagDto]),
     __metadata("design:returntype", Promise)
 ], TagsController.prototype, "create", null);
+__decorate([
+    (0, common_1.Delete)(),
+    __param(0, (0, common_1.Query)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], TagsController.prototype, "delete", null);
+__decorate([
+    (0, common_1.Delete)('soft-delete'),
+    __param(0, (0, common_1.Query)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], TagsController.prototype, "softDelete", null);
 exports.TagsController = TagsController = __decorate([
     (0, common_1.Controller)('tags'),
     __metadata("design:paramtypes", [tags_service_1.TagsService])

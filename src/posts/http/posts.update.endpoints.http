@@ -1,9 +1,10 @@
-POST  http://localhost:3000/posts
+PATCH  http://localhost:3000/posts
 Content-Type: application/json
 {
-  "title": "Hello World",
+  "id":7,
+  "title": "Hello World NESTJS with TS",
   "postType": "post",
-  "slug": "hello-world-india",
+  "slug": "nest-js-with-ts",
   "status": "draft",
   "content": "Hello World",
     // "tags": ["hello", "world"],
@@ -11,5 +12,5 @@ Content-Type: application/json
     "metaValue":"{\"sideBar\":true,\"footer\":true}"
     },
     "authorId":1,
-    "tags":[4,6]
+    "tags":[6,4]
 }

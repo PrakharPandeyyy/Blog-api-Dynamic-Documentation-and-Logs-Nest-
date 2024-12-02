@@ -73,7 +73,7 @@ export class Post {
     type: 'timestamp',
     nullable: true,
   })
-  publishedOn?: Date;
+  publishOn?: Date;
 
   @OneToOne(
     () => MetaOption,
@@ -90,7 +90,9 @@ export class Post {
   })
   author: User;
 
-  @ManyToMany(() => Tag)
+  @ManyToMany(() => Tag, (tag) => tag.posts, {
+    eager: true,
+  })
   @JoinTable()
   tags?: Tag[];
 }

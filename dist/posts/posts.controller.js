@@ -28,8 +28,8 @@ let PostsController = class PostsController {
     createPost(createPostDto) {
         return this.postsService.create(createPostDto);
     }
-    updatePost(patchPostsDto) {
-        console.log(patchPostsDto);
+    updatePost(patchPostDto) {
+        return this.postsService.update(patchPostDto);
     }
     deletePost(id) {
         return this.postsService.delete(id);

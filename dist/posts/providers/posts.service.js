@@ -19,7 +19,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const post_entity_1 = require("../entities/post-entity");
 const typeorm_2 = require("typeorm");
 const meta_option_entity_1 = require("../../meta-options/meta-option.entity");
-const tags_service_1 = require("../../tags/tags.service");
+const tags_service_1 = require("../../tags/providers/tags.service");
 let PostsService = class PostsService {
     constructor(usersService, tagsService, postsRepository, metaOptionsRepository) {
         this.usersService = usersService;
@@ -44,6 +44,22 @@ let PostsService = class PostsService {
             },
         });
         return posts;
+    }
+    async update(patchPostDto) {
+        const tags = await this.tagsService.findMultipleTags(patchPostDto.tags);
+        const post = await this.postsRepository.findOneBy({
+            id: patchPostDto.id,
+        });
+        post.title = patchPostDto.title ?? post.title;
+        post.content = patchPostDto.content ?? post.content;
+        post.status = patchPostDto.status ?? post.status;
+        post.postType = patchPostDto.postType ?? post.postType;
+        post.slug = patchPostDto.slug ?? post.slug;
+        post.featuredImageUrl =
+            patchPostDto.featuredImageUrl ?? post.featuredImageUrl;
+        post.publishOn = patchPostDto.publishOn ?? post.publishOn;
+        post.tags = tags;
+        return await this.postsRepository.save(post);
     }
     async delete(id) {
         await this.postsRepository.delete({ id });

@@ -84,7 +84,7 @@ export class CreatePostDto {
   @IsOptional()
   @IsUrl()
   @MaxLength(1024)
-  featureImageUrl?: string;
+  featuredImageUrl?: string;
 
   @ApiPropertyOptional({
     description: 'Date when the post should be published',

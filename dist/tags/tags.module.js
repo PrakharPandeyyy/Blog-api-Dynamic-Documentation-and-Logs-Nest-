@@ -11,7 +11,7 @@ const common_1 = require("@nestjs/common");
 const tags_controller_1 = require("./tags.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const tag_entity_1 = require("./tag.entity");
-const tags_service_1 = require("./tags.service");
+const tags_service_1 = require("./providers/tags.service");
 let TagsModule = class TagsModule {
 };
 exports.TagsModule = TagsModule;

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tag = void 0;
+const post_entity_1 = require("../posts/entities/post-entity");
 const typeorm_1 = require("typeorm");
 let Tag = class Tag {
 };
@@ -60,6 +61,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Tag.prototype, "featuredImageUrl", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => post_entity_1.Post, (post) => post.tags, {
+        onDelete: 'CASCADE',
+    }),
+    __metadata("design:type", Array)
+], Tag.prototype, "posts", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

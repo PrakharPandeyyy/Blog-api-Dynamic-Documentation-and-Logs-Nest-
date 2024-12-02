@@ -8,7 +8,7 @@ export declare class CreatePostDto {
     status: postStatus;
     content?: string;
     schema?: string;
-    featureImageUrl?: string;
+    featuredImageUrl?: string;
     publishOn?: Date;
     tags?: number[];
     metaOptions?: CreatePostMetaOptionsDto | null;
