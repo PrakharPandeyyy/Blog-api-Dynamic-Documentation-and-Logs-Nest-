@@ -2,6 +2,8 @@ packages/*/package-lock.json
 .env.stage.prod
 .env.stage.dev
 .env
+.env.development
+.env.test
 documentation
 
 # dependencies
