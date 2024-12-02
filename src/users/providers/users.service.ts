@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createUserDto } from '../dto/create-user.dto';
+import { ConfigService } from '@nestjs/config';
 
 /**
  * Class to connect to the database and perform CRUD operations on the Users table
@@ -18,6 +19,8 @@ export class UsersService {
 
     @Inject(forwardRef(() => AuthService)) // for circular dependency
     private readonly authService: AuthService,
+
+    private readonly configService: ConfigService, // for using Config Service
   ) {}
 
   /**
