@@ -102,13 +102,12 @@ __decorate([
 ], CreatePostDto.prototype, "publishOn", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        description: 'Tags for the post',
-        example: ['tag1', 'tag2'],
+        description: 'Array of ids Tags ',
+        example: [1, 2],
     }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsArray)(),
-    (0, class_validator_1.IsString)({ each: true }),
-    (0, class_validator_1.MinLength)(3, { each: true }),
+    (0, class_validator_1.IsInt)({ each: true }),
     __metadata("design:type", Array)
 ], CreatePostDto.prototype, "tags", void 0);
 __decorate([
@@ -130,4 +129,14 @@ __decorate([
     (0, class_transformer_1.Type)(() => create_post_meta_options_dto_1.CreatePostMetaOptionsDto),
     __metadata("design:type", create_post_meta_options_dto_1.CreatePostMetaOptionsDto)
 ], CreatePostDto.prototype, "metaOptions", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({
+        type: 'integer',
+        required: true,
+        example: 1,
+    }),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreatePostDto.prototype, "authorId", void 0);
 //# sourceMappingURL=create-post.dto.js.map

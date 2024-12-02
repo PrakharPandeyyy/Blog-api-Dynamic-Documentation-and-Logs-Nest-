@@ -14,6 +14,8 @@ const typeorm_1 = require("typeorm");
 const postType_enum_1 = require("../enums/postType.enum");
 const postStatus_enum_1 = require("../enums/postStatus.enum");
 const meta_option_entity_1 = require("../../meta-options/meta-option.entity");
+const user_entity_1 = require("../../users/entities/user.entity");
+const tag_entity_1 = require("../../tags/tag.entity");
 let Post = class Post {
 };
 exports.Post = Post;
@@ -92,6 +94,17 @@ __decorate([
     }),
     __metadata("design:type", meta_option_entity_1.MetaOption)
 ], Post.prototype, "metaOptions", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.posts, {
+        eager: true,
+    }),
+    __metadata("design:type", user_entity_1.User)
+], Post.prototype, "author", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => tag_entity_1.Tag),
+    (0, typeorm_1.JoinTable)(),
+    __metadata("design:type", Array)
+], Post.prototype, "tags", void 0);
 exports.Post = Post = __decorate([
     (0, typeorm_1.Entity)()
 ], Post);

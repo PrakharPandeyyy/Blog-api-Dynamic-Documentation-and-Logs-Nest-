@@ -2,12 +2,17 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PostType } from '../enums/postType.enum';
 import { postStatus } from '../enums/postStatus.enum';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Tag } from 'src/tags/tag.entity';
 
 @Entity()
 export class Post {
@@ -70,8 +75,6 @@ export class Post {
   })
   publishedOn?: Date;
 
-  tags?: string[];
-
   @OneToOne(
     () => MetaOption,
     (metaOption) => metaOption.post, // Inverse Relationship // bidirectional relationship // to load the relation and the other option if for  teeling the entity that metaOptions lies on the Post entity
@@ -81,4 +84,13 @@ export class Post {
     },
   ) // it is important to specify the type of the relation and the related entity and it acts as a primary key
   metaOptions?: MetaOption;
+
+  @ManyToOne(() => User, (user) => user.posts, {
+    eager: true,
+  })
+  author: User;
+
+  @ManyToMany(() => Tag)
+  @JoinTable()
+  tags?: Tag[];
 }

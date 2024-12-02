@@ -30,14 +30,14 @@ export class Tag {
 
   @Column({
     type: 'text',
-    nullable: false,
+    nullable: true,
     unique: true,
   })
   description?: string;
 
   @Column({
     type: 'text',
-    nullable: false,
+    nullable: true,
     unique: true,
   })
   schema?: string;

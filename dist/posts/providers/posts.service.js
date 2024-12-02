@@ -19,18 +19,25 @@ const typeorm_1 = require("@nestjs/typeorm");
 const post_entity_1 = require("../entities/post-entity");
 const typeorm_2 = require("typeorm");
 const meta_option_entity_1 = require("../../meta-options/meta-option.entity");
+const tags_service_1 = require("../../tags/tags.service");
 let PostsService = class PostsService {
-    constructor(usersService, postsRepository, metaOptionsRepository) {
+    constructor(usersService, tagsService, postsRepository, metaOptionsRepository) {
         this.usersService = usersService;
+        this.tagsService = tagsService;
         this.postsRepository = postsRepository;
         this.metaOptionsRepository = metaOptionsRepository;
     }
     async create(createPostDto) {
-        const post = this.postsRepository.create(createPostDto);
+        const author = await this.usersService.findOneById(createPostDto.authorId);
+        const tags = await this.tagsService.findMultipleTags(createPostDto.tags);
+        const post = this.postsRepository.create({
+            ...createPostDto,
+            author: author,
+            tags: tags,
+        });
         return await this.postsRepository.save(post);
     }
     async findAll(userId) {
-        const user = this.usersService.findOneById(+userId);
         const posts = await this.postsRepository.find({
             relations: {
                 metaOptions: true,
@@ -46,9 +53,10 @@ let PostsService = class PostsService {
 exports.PostsService = PostsService;
 exports.PostsService = PostsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(1, (0, typeorm_1.InjectRepository)(post_entity_1.Post)),
-    __param(2, (0, typeorm_1.InjectRepository)(meta_option_entity_1.MetaOption)),
+    __param(2, (0, typeorm_1.InjectRepository)(post_entity_1.Post)),
+    __param(3, (0, typeorm_1.InjectRepository)(meta_option_entity_1.MetaOption)),
     __metadata("design:paramtypes", [users_service_1.UsersService,
+        tags_service_1.TagsService,
         typeorm_2.Repository,
         typeorm_2.Repository])
 ], PostsService);

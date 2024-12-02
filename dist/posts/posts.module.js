@@ -14,6 +14,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const users_module_1 = require("../users/users.module");
 const post_entity_1 = require("./entities/post-entity");
 const meta_option_entity_1 = require("../meta-options/meta-option.entity");
+const tags_module_1 = require("../tags/tags.module");
 let PostsModule = class PostsModule {
 };
 exports.PostsModule = PostsModule;
@@ -21,7 +22,11 @@ exports.PostsModule = PostsModule = __decorate([
     (0, common_1.Module)({
         providers: [posts_service_1.PostsService],
         controllers: [posts_controller_1.PostsController],
-        imports: [users_module_1.UsersModule, typeorm_1.TypeOrmModule.forFeature([post_entity_1.Post, meta_option_entity_1.MetaOption])],
+        imports: [
+            users_module_1.UsersModule,
+            tags_module_1.TagsModule,
+            typeorm_1.TypeOrmModule.forFeature([post_entity_1.Post, meta_option_entity_1.MetaOption]),
+        ],
     })
 ], PostsModule);
 //# sourceMappingURL=posts.module.js.map

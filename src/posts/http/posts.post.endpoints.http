@@ -3,11 +3,13 @@ Content-Type: application/json
 {
   "title": "Hello World",
   "postType": "post",
-  "slug": "hello-india-a",
+  "slug": "hello-india-andd",
   "status": "draft",
   "content": "Hello World",
     // "tags": ["hello", "world"],
   "metaOptions":{
     "metaValue":"{\"sideBar\":true,\"footer\":true}"
-    }
+    },
+    "authorId":1,
+    "tags":[4]
 }

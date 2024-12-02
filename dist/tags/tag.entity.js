@@ -39,7 +39,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({
         type: 'text',
-        nullable: false,
+        nullable: true,
         unique: true,
     }),
     __metadata("design:type", String)
@@ -47,7 +47,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({
         type: 'text',
-        nullable: false,
+        nullable: true,
         unique: true,
     }),
     __metadata("design:type", String)

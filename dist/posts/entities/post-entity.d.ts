@@ -1,6 +1,8 @@
 import { PostType } from '../enums/postType.enum';
 import { postStatus } from '../enums/postStatus.enum';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
+import { User } from 'src/users/entities/user.entity';
+import { Tag } from 'src/tags/tag.entity';
 export declare class Post {
     id: number;
     title: string;
@@ -11,6 +13,7 @@ export declare class Post {
     schema?: string;
     featuredImageUrl?: string;
     publishedOn?: Date;
-    tags?: string[];
     metaOptions?: MetaOption;
+    author: User;
+    tags?: Tag[];
 }

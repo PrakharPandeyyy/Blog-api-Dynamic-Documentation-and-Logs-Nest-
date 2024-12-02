@@ -19,7 +19,7 @@ import { PatchPostDto } from 'src/users/dto/patch-post.dto';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
   @Get()
-  getPosts(@Param('userId') userId: string) {
+  getPosts(@Param('userId') userId: number) {
     return this.postsService.findAll(userId);
   }
 

@@ -12,9 +12,5 @@ export declare class UsersService {
         firstName: string;
         email: string;
     }[];
-    findOneById(id: number): Promise<{
-        id: number;
-        firstName: string;
-        email: string;
-    }>;
+    findOneById(id: number): Promise<User>;
 }
