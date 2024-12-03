@@ -6,7 +6,7 @@ export declare class PostsController {
     constructor(postsService: PostsService);
     getPosts(userId: number): Promise<import("./entities/post-entity").Post[]>;
     createPost(createPostDto: CreatePostDto): Promise<import("./entities/post-entity").Post>;
-    updatePost(patchPostDto: PatchPostDto): Promise<import("./entities/post-entity").Post>;
+    updatePost(patchPostDto: PatchPostDto): Promise<any>;
     deletePost(id: number): Promise<{
         deleted: boolean;
         id: number;

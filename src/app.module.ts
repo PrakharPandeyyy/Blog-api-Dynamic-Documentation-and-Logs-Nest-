@@ -36,7 +36,7 @@ const ENV = process.env.NODE_ENV;
         synchronize: configService.get('database.synchronize'), // this will automatically create the tables in the database only for development // synchronization between nestjs and postgres or else we would need to use migrations and used for production systems
         autoLoadEntities: configService.get('database.autoLoadEntities'), // this is used to load all the entities from the entities folder
         port: configService.get('database.port'),
-        username: configService.get('database.username'),
+        username: configService.get('database.user'),
         password: configService.get('database.password'),
         host: configService.get('database.host'),
         database: configService.get(' '),

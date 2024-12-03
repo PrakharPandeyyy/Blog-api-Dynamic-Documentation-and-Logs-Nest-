@@ -46,10 +46,28 @@ let PostsService = class PostsService {
         return posts;
     }
     async update(patchPostDto) {
-        const tags = await this.tagsService.findMultipleTags(patchPostDto.tags);
-        const post = await this.postsRepository.findOneBy({
-            id: patchPostDto.id,
-        });
+        let tags = undefined;
+        let post = undefined;
+        try {
+            tags = await this.tagsService.findMultipleTags(patchPostDto.tags);
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment');
+        }
+        if (!tags || tags.length !== patchPostDto.tags.length) {
+            throw new common_1.BadRequestException('Please check your tag ids and ensure they are correct');
+        }
+        try {
+            post = await this.postsRepository.findOneBy({
+                id: patchPostDto.id,
+            });
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment');
+        }
+        if (!post) {
+            throw new common_1.BadRequestException('The post ID does not exist');
+        }
         post.title = patchPostDto.title ?? post.title;
         post.content = patchPostDto.content ?? post.content;
         post.status = patchPostDto.status ?? post.status;
@@ -59,7 +77,13 @@ let PostsService = class PostsService {
             patchPostDto.featuredImageUrl ?? post.featuredImageUrl;
         post.publishOn = patchPostDto.publishOn ?? post.publishOn;
         post.tags = tags;
-        return await this.postsRepository.save(post);
+        try {
+            await this.postsRepository.save(post);
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment');
+        }
+        return post;
     }
     async delete(id) {
         await this.postsRepository.delete({ id });
