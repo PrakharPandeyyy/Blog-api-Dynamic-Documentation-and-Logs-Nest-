@@ -5,12 +5,14 @@ import {
   Injectable,
   RequestTimeoutException,
 } from '@nestjs/common';
-import { GetUserParamDto } from '../dto/get-user-params.dto';
+
 import { AuthService } from 'src/auth/providers/auth.service';
 import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { createUserDto } from '../dto/create-user.dto';
+import { CreateUserDto } from '../dto/create-user.dto';
+import { UsersCreateManyProvider } from './users-create-many.provider';
+import { CreateManyUsersDto } from '../dto/create-many-users.dto';
 
 /**
  * Class to connect to the database and perform CRUD operations on the Users table
@@ -24,12 +26,16 @@ export class UsersService {
 
     @Inject(forwardRef(() => AuthService)) // for circular dependency
     private readonly authService: AuthService,
+    /**
+     * Inject usersCreateManyProvider
+     */
+    private readonly usersCreateManyProvider: UsersCreateManyProvider,
   ) {}
 
   /**
    *
    */
-  async createUser(createUserDto: createUserDto) {
+  async createUser(createUserDto: CreateUserDto) {
     let existingUser = undefined;
     try {
       existingUser = await this.userRepository.findOne({
@@ -87,5 +93,8 @@ export class UsersService {
       throw new BadRequestException('User Id Does not Exist');
     }
     return user;
+  }
+  async createMany(createManyUsersDto: CreateManyUsersDto) {
+    return await this.usersCreateManyProvider.creatMany(createManyUsersDto);
   }
 }

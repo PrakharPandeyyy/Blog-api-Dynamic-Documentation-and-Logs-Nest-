@@ -15,18 +15,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./providers/users.service");
-const get_user_params_dto_1 = require("./dto/get-user-params.dto");
 const swagger_1 = require("@nestjs/swagger");
 const create_user_dto_1 = require("./dto/create-user.dto");
+const create_many_users_dto_1 = require("./dto/create-many-users.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
     }
-    getUsers(getUserParamDto, limit, page) {
-        return this.usersService.findAll(getUserParamDto, limit, page);
-    }
     createUsers(createUserDto) {
         return this.usersService.createUser(createUserDto);
+    }
+    createManyUsers(createManyUsersDto) {
+        return this.usersService.createMany(createManyUsersDto);
     }
 };
 exports.UsersController = UsersController;
@@ -53,20 +53,19 @@ __decorate([
         description: 'The Position of page number that you want api to return.',
         example: 1,
     }),
-    __param(0, (0, common_1.Param)()),
-    __param(1, (0, common_1.Query)('limit', new common_1.DefaultValuePipe(10), common_1.ParseIntPipe)),
-    __param(2, (0, common_1.Query)('page', new common_1.DefaultValuePipe(1), common_1.ParseIntPipe)),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [get_user_params_dto_1.GetUserParamDto, Number, Number]),
-    __metadata("design:returntype", void 0)
-], UsersController.prototype, "getUsers", null);
-__decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_user_dto_1.createUserDto]),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createUsers", null);
+__decorate([
+    (0, common_1.Post)('create-many'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_many_users_dto_1.CreateManyUsersDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createManyUsers", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     (0, swagger_1.ApiTags)('Users'),

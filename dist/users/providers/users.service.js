@@ -18,10 +18,12 @@ const auth_service_1 = require("../../auth/providers/auth.service");
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("../entities/user.entity");
 const typeorm_2 = require("@nestjs/typeorm");
+const users_create_many_provider_1 = require("./users-create-many.provider");
 let UsersService = class UsersService {
-    constructor(userRepository, authService) {
+    constructor(userRepository, authService, usersCreateManyProvider) {
         this.userRepository = userRepository;
         this.authService = authService;
+        this.usersCreateManyProvider = usersCreateManyProvider;
     }
     async createUser(createUserDto) {
         let existingUser = undefined;
@@ -64,6 +66,9 @@ let UsersService = class UsersService {
         }
         return user;
     }
+    async createMany(createManyUsersDto) {
+        return await this.usersCreateManyProvider.creatMany(createManyUsersDto);
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
@@ -71,6 +76,7 @@ exports.UsersService = UsersService = __decorate([
     __param(0, (0, typeorm_2.InjectRepository)(user_entity_1.User)),
     __param(1, (0, common_1.Inject)((0, common_1.forwardRef)(() => auth_service_1.AuthService))),
     __metadata("design:paramtypes", [typeorm_1.Repository,
-        auth_service_1.AuthService])
+        auth_service_1.AuthService,
+        users_create_many_provider_1.UsersCreateManyProvider])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
