@@ -11,6 +11,9 @@ import { Repository } from 'typeorm';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
 import { TagsService } from 'src/tags/providers/tags.service';
 import { PatchPostDto } from '../dto/patch-post.dto';
+import { GetPostsDto } from '../dto/get-posts.dto';
+import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
+import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
 
 @Injectable()
 export class PostsService {
@@ -33,6 +36,10 @@ export class PostsService {
      */
     @InjectRepository(MetaOption)
     private readonly metaOptionsRepository: Repository<MetaOption>,
+    /**
+     *   Injecting the PaginationProvider
+     */
+    private readonly paginationProvider: PaginationProvider,
   ) {}
   async create(createPostDto: CreatePostDto) {
     // find author from authorId
@@ -48,14 +55,17 @@ export class PostsService {
     });
     return await this.postsRepository.save(post);
   }
-  async findAll(userId: number) {
-    const posts = await this.postsRepository.find({
-      relations: {
-        metaOptions: true, // <--- This is the relation that we want to load
-        // author: true,
-        // tags: true,
+  async findAll(
+    postQuery: GetPostsDto,
+    userId: string,
+  ): Promise<Paginated<Post>> {
+    const posts = await this.paginationProvider.paginateQuery(
+      {
+        limit: postQuery.limit,
+        page: postQuery.page,
       },
-    });
+      this.postsRepository,
+    );
     return posts;
   }
 
