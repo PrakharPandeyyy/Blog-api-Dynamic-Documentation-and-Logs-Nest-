@@ -44,7 +44,7 @@ exports.AppModule = AppModule = __decorate([
                     synchronize: configService.get('database.synchronize'),
                     autoLoadEntities: configService.get('database.autoLoadEntities'),
                     port: configService.get('database.port'),
-                    username: configService.get('database.username'),
+                    username: configService.get('database.user'),
                     password: configService.get('database.password'),
                     host: configService.get('database.host'),
                     database: configService.get(' '),

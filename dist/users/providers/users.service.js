@@ -24,27 +24,45 @@ let UsersService = class UsersService {
         this.authService = authService;
     }
     async createUser(createUserDto) {
-        const existingUser = await this.userRepository.findOne({
-            where: { email: createUserDto.email },
-        });
+        let existingUser = undefined;
+        try {
+            existingUser = await this.userRepository.findOne({
+                where: { email: createUserDto.email },
+            });
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment , try again later', {
+                description: 'Error connecting to the database',
+            });
+        }
+        if (existingUser) {
+            throw new common_1.BadRequestException('User Already Exists');
+        }
         let newUser = this.userRepository.create(createUserDto);
-        newUser = await this.userRepository.save(newUser);
+        try {
+            newUser = await this.userRepository.save(newUser);
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment , try again later', {
+                description: 'Error connecting to the database',
+            });
+        }
         return newUser;
     }
-    findAll(getUserParamDto, limit, page) {
-        return [
-            {
-                firstName: 'John',
-                email: 'john@doe.com',
-            },
-            {
-                firstName: 'Jane',
-                email: 'jane@doe.com',
-            },
-        ];
-    }
     async findOneById(id) {
-        return await this.userRepository.findOneBy({ id });
+        let user = undefined;
+        try {
+            user = await this.userRepository.findOneBy({ id });
+        }
+        catch (e) {
+            throw new common_1.RequestTimeoutException('Unable to process your request at the moment , try again later', {
+                description: 'Error connecting to the database',
+            });
+        }
+        if (!user) {
+            throw new common_1.BadRequestException('User Id Does not Exist');
+        }
+        return user;
     }
 };
 exports.UsersService = UsersService;

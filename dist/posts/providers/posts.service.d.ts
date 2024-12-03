@@ -13,7 +13,7 @@ export declare class PostsService {
     constructor(usersService: UsersService, tagsService: TagsService, postsRepository: Repository<Post>, metaOptionsRepository: Repository<MetaOption>);
     create(createPostDto: CreatePostDto): Promise<Post>;
     findAll(userId: number): Promise<Post[]>;
-    update(patchPostDto: PatchPostDto): Promise<Post>;
+    update(patchPostDto: PatchPostDto): Promise<any>;
     delete(id: number): Promise<{
         deleted: boolean;
         id: number;
