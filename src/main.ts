@@ -10,6 +10,9 @@ async function bootstrap() {
       whitelist: true, //no additional data apart from that in dto can be added , it get stripped of before getting processed
       // forbidNonWhitelisted , this can also be used
       transform: true, // tranforms the incoming request to the instance of dto class after validation
+      transformOptions: {
+        enableImplicitConversion: true, // this will convert the incoming request to the type of dto class
+      },
     }),
   ); // setting validation pipes globally
 
