@@ -3,7 +3,6 @@ import {
   Injectable,
   RequestTimeoutException,
 } from '@nestjs/common';
-import { CreateUserDto } from '../dto/create-user.dto';
 import { User } from '../entities/user.entity';
 import { DataSource } from 'typeorm';
 import { CreateManyUsersDto } from '../dto/create-many-users.dto';

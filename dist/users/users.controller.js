@@ -31,29 +31,7 @@ let UsersController = class UsersController {
 };
 exports.UsersController = UsersController;
 __decorate([
-    (0, common_1.Get)('/:id?'),
-    (0, swagger_1.ApiOperation)({
-        summary: 'Fetches a list of registed users on the application',
-    }),
-    (0, swagger_1.ApiResponse)({
-        status: 200,
-        description: 'User fetched Successfullt based on the querry',
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'limit',
-        type: 'number',
-        required: false,
-        description: 'Number of entries returned per queries.',
-        example: 10,
-    }),
-    (0, swagger_1.ApiQuery)({
-        name: 'page',
-        type: 'number',
-        required: false,
-        description: 'The Position of page number that you want api to return.',
-        example: 1,
-    }),
-    (0, common_1.Post)(),
+    (0, common_1.Post)('create'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),

@@ -4,7 +4,6 @@ import { ObjectLiteral, Repository } from 'typeorm';
 import { Request } from 'express';
 import { REQUEST } from '@nestjs/core';
 import { Paginated } from '../interfaces/paginated.interface';
-
 @Injectable()
 export class PaginationProvider {
   constructor(
@@ -19,6 +18,11 @@ export class PaginationProvider {
     repository: Repository<T>,
   ): Promise<Paginated<T>> {
     const results = await repository.find({
+      // relations: {
+      //   metaOptions: true, // <--- This is the relation that we want to load
+      //   // author: true,
+      //   // tags: true,
+      // },
       skip: (paginationQuery.page - 1) * paginationQuery.limit,
       take: paginationQuery.limit,
     });
@@ -27,7 +31,6 @@ export class PaginationProvider {
      */
     const baseURL = this.request.protocol + '://' + this.request.get('host');
     const newURL = new URL(this.request.url, baseURL);
-
     /**
      * Calculating Page numbers
      */
@@ -41,7 +44,6 @@ export class PaginationProvider {
       paginationQuery.page === 1
         ? paginationQuery.page
         : paginationQuery.page - 1;
-
     /**
      * Final Response
      */
@@ -61,7 +63,6 @@ export class PaginationProvider {
         previous: `${newURL.origin}${newURL.pathname}?page=${prevPage}&limit=${paginationQuery.limit}`,
       },
     };
-
     return finalResponse;
   }
 }

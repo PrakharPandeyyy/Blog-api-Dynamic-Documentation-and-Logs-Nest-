@@ -15,15 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("../../users/providers/users.service");
+const sign_in_provider_1 = require("./sign-in.provider");
 let AuthService = class AuthService {
-    constructor(usersService) {
+    constructor(usersService, signInProvider) {
         this.usersService = usersService;
+        this.signInProvider = signInProvider;
+    }
+    async signIn(signInDto) {
+        return this.signInProvider.signIn(signInDto);
     }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => users_service_1.UsersService))),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
+    __metadata("design:paramtypes", [users_service_1.UsersService,
+        sign_in_provider_1.SignInProvider])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
