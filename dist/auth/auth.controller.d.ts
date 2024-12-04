@@ -3,5 +3,7 @@ import { SignInDto } from './dtos/signin.dto';
 export declare class AuthController {
     private readonly authService;
     constructor(authService: AuthService);
-    SignIn(signInDto: SignInDto): Promise<boolean>;
+    SignIn(signInDto: SignInDto): Promise<{
+        accessToken: string;
+    }>;
 }
