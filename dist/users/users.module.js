@@ -14,13 +14,20 @@ const auth_module_1 = require("../auth/auth.module");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
 const users_create_many_provider_1 = require("./providers/users-create-many.provider");
+const create_user_provider_1 = require("./providers/create-user.provider");
+const find_one_user_by_email_provider_1 = require("./providers/find-one-user-by-email.provider");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
         controllers: [users_controller_1.UsersController],
-        providers: [users_service_1.UsersService, users_create_many_provider_1.UsersCreateManyProvider],
+        providers: [
+            users_service_1.UsersService,
+            users_create_many_provider_1.UsersCreateManyProvider,
+            create_user_provider_1.CreateUserProvider,
+            find_one_user_by_email_provider_1.FindOneUserByEmailProvider,
+        ],
         exports: [users_service_1.UsersService],
         imports: [
             (0, common_1.forwardRef)(() => auth_module_1.AuthModule),

@@ -19,37 +19,18 @@ const typeorm_1 = require("typeorm");
 const user_entity_1 = require("../entities/user.entity");
 const typeorm_2 = require("@nestjs/typeorm");
 const users_create_many_provider_1 = require("./users-create-many.provider");
+const create_user_provider_1 = require("./create-user.provider");
+const find_one_user_by_email_provider_1 = require("./find-one-user-by-email.provider");
 let UsersService = class UsersService {
-    constructor(userRepository, authService, usersCreateManyProvider) {
+    constructor(userRepository, authService, usersCreateManyProvider, createUserProvider, findOneUserByEmailProvider) {
         this.userRepository = userRepository;
         this.authService = authService;
         this.usersCreateManyProvider = usersCreateManyProvider;
+        this.createUserProvider = createUserProvider;
+        this.findOneUserByEmailProvider = findOneUserByEmailProvider;
     }
     async createUser(createUserDto) {
-        let existingUser = undefined;
-        try {
-            existingUser = await this.userRepository.findOne({
-                where: { email: createUserDto.email },
-            });
-        }
-        catch (e) {
-            throw new common_1.RequestTimeoutException('Unable to process your request at the moment , try again later', {
-                description: 'Error connecting to the database',
-            });
-        }
-        if (existingUser) {
-            throw new common_1.BadRequestException('User Already Exists');
-        }
-        let newUser = this.userRepository.create(createUserDto);
-        try {
-            newUser = await this.userRepository.save(newUser);
-        }
-        catch (e) {
-            throw new common_1.RequestTimeoutException('Unable to process your request at the moment , try again later', {
-                description: 'Error connecting to the database',
-            });
-        }
-        return newUser;
+        return this.createUserProvider.createUser(createUserDto);
     }
     async findOneById(id) {
         let user = undefined;
@@ -69,6 +50,9 @@ let UsersService = class UsersService {
     async createMany(createManyUsersDto) {
         return await this.usersCreateManyProvider.creatMany(createManyUsersDto);
     }
+    async findOneByEmail(email) {
+        return await this.findOneUserByEmailProvider.findOneByEmail(email);
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
@@ -77,6 +61,8 @@ exports.UsersService = UsersService = __decorate([
     __param(1, (0, common_1.Inject)((0, common_1.forwardRef)(() => auth_service_1.AuthService))),
     __metadata("design:paramtypes", [typeorm_1.Repository,
         auth_service_1.AuthService,
-        users_create_many_provider_1.UsersCreateManyProvider])
+        users_create_many_provider_1.UsersCreateManyProvider,
+        create_user_provider_1.CreateUserProvider,
+        find_one_user_by_email_provider_1.FindOneUserByEmailProvider])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map
