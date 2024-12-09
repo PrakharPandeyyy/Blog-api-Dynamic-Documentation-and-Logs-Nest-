@@ -19,6 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const create_post_dto_1 = require("./dto/create-post.dto");
 const patch_post_dto_1 = require("../users/dto/patch-post.dto");
 const get_posts_dto_1 = require("./dto/get-posts.dto");
+const active_user__data_decorator_1 = require("../auth/decorator/active-user.-data.decorator");
 let PostsController = class PostsController {
     constructor(postsService) {
         this.postsService = postsService;
@@ -26,8 +27,8 @@ let PostsController = class PostsController {
     getPosts(userId, postQuery) {
         return this.postsService.findAll(postQuery, userId);
     }
-    createPost(createPostDto) {
-        return this.postsService.create(createPostDto);
+    createPost(createPostDto, user) {
+        return this.postsService.create(createPostDto, user);
     }
     updatePost(patchPostDto) {
         return this.postsService.update(patchPostDto);
@@ -53,8 +54,9 @@ __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Create a post' }),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, active_user__data_decorator_1.ActiveUser)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto]),
+    __metadata("design:paramtypes", [create_post_dto_1.CreatePostDto, Object]),
     __metadata("design:returntype", void 0)
 ], PostsController.prototype, "createPost", null);
 __decorate([

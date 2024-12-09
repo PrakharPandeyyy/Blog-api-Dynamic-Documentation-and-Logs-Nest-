@@ -21,23 +21,18 @@ const typeorm_2 = require("typeorm");
 const meta_option_entity_1 = require("../../meta-options/meta-option.entity");
 const tags_service_1 = require("../../tags/providers/tags.service");
 const pagination_provider_1 = require("../../common/pagination/providers/pagination.provider");
+const create_post_provider_1 = require("./create-post.provider");
 let PostsService = class PostsService {
-    constructor(usersService, tagsService, postsRepository, metaOptionsRepository, paginationProvider) {
+    constructor(usersService, tagsService, postsRepository, metaOptionsRepository, paginationProvider, createPostProvider) {
         this.usersService = usersService;
         this.tagsService = tagsService;
         this.postsRepository = postsRepository;
         this.metaOptionsRepository = metaOptionsRepository;
         this.paginationProvider = paginationProvider;
+        this.createPostProvider = createPostProvider;
     }
-    async create(createPostDto) {
-        const author = await this.usersService.findOneById(createPostDto.authorId);
-        const tags = await this.tagsService.findMultipleTags(createPostDto.tags);
-        const post = this.postsRepository.create({
-            ...createPostDto,
-            author: author,
-            tags: tags,
-        });
-        return await this.postsRepository.save(post);
+    async create(createPostDto, user) {
+        return await this.createPostProvider.create(createPostDto, user);
     }
     async findAll(postQuery, userId) {
         const posts = await this.paginationProvider.paginateQuery({
@@ -100,6 +95,7 @@ exports.PostsService = PostsService = __decorate([
         tags_service_1.TagsService,
         typeorm_2.Repository,
         typeorm_2.Repository,
-        pagination_provider_1.PaginationProvider])
+        pagination_provider_1.PaginationProvider,
+        create_post_provider_1.CreatePostProvider])
 ], PostsService);
 //# sourceMappingURL=posts.service.js.map

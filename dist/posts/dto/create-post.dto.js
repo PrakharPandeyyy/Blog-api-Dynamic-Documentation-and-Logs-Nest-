@@ -129,14 +129,4 @@ __decorate([
     (0, class_transformer_1.Type)(() => create_post_meta_options_dto_1.CreatePostMetaOptionsDto),
     __metadata("design:type", create_post_meta_options_dto_1.CreatePostMetaOptionsDto)
 ], CreatePostDto.prototype, "metaOptions", void 0);
-__decorate([
-    (0, swagger_1.ApiPropertyOptional)({
-        type: 'integer',
-        required: true,
-        example: 1,
-    }),
-    (0, class_validator_1.IsInt)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CreatePostDto.prototype, "authorId", void 0);
 //# sourceMappingURL=create-post.dto.js.map

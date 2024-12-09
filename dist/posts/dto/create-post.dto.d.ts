@@ -12,5 +12,4 @@ export declare class CreatePostDto {
     publishOn?: Date;
     tags?: number[];
     metaOptions?: CreatePostMetaOptionsDto | null;
-    authorId: number;
 }
