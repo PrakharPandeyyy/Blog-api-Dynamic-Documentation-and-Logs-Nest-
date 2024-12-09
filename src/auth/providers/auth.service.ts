@@ -12,6 +12,7 @@ export class AuthService {
      * inject signInProvider
      */
     private readonly signInProvider: SignInProvider,
+    
   ) {}
   async signIn(signInDto: SignInDto) {
     return this.signInProvider.signIn(signInDto);
