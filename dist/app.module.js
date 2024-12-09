@@ -25,6 +25,7 @@ const jwt_config_1 = require("./auth/config/jwt.config");
 const jwt_1 = require("@nestjs/jwt");
 const core_1 = require("@nestjs/core");
 const acess_token_guard_1 = require("./auth/guards/acess-token/acess-token.guard");
+const authentication_guard_1 = require("./auth/guards/authentication/authentication.guard");
 const ENV = process.env.NODE_ENV;
 let AppModule = class AppModule {
 };
@@ -66,8 +67,9 @@ exports.AppModule = AppModule = __decorate([
             app_service_1.AppService,
             {
                 provide: core_1.APP_GUARD,
-                useClass: acess_token_guard_1.AccessTokenGuard,
+                useClass: authentication_guard_1.AuthenticationGuard,
             },
+            acess_token_guard_1.AccessTokenGuard,
         ],
     })
 ], AppModule);

@@ -16,11 +16,6 @@ const user_entity_1 = require("./entities/user.entity");
 const users_create_many_provider_1 = require("./providers/users-create-many.provider");
 const create_user_provider_1 = require("./providers/create-user.provider");
 const find_one_user_by_email_provider_1 = require("./providers/find-one-user-by-email.provider");
-const config_1 = require("@nestjs/config");
-const jwt_config_1 = require("../auth/config/jwt.config");
-const jwt_1 = require("@nestjs/jwt");
-const core_1 = require("@nestjs/core");
-const acess_token_guard_1 = require("../auth/guards/acess-token/acess-token.guard");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
@@ -32,17 +27,11 @@ exports.UsersModule = UsersModule = __decorate([
             users_create_many_provider_1.UsersCreateManyProvider,
             create_user_provider_1.CreateUserProvider,
             find_one_user_by_email_provider_1.FindOneUserByEmailProvider,
-            {
-                provide: core_1.APP_GUARD,
-                useClass: acess_token_guard_1.AccessTokenGuard,
-            },
         ],
         exports: [users_service_1.UsersService],
         imports: [
             (0, common_1.forwardRef)(() => auth_module_1.AuthModule),
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.User]),
-            config_1.ConfigModule.forFeature(jwt_config_1.default),
-            jwt_1.JwtModule.registerAsync(jwt_config_1.default.asProvider()),
         ],
     })
 ], UsersModule);

@@ -18,7 +18,8 @@ const users_service_1 = require("./providers/users.service");
 const swagger_1 = require("@nestjs/swagger");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const create_many_users_dto_1 = require("./dto/create-many-users.dto");
-const acess_token_guard_1 = require("../auth/guards/acess-token/acess-token.guard");
+const auth_decorator_1 = require("../auth/decorator/auth.decorator");
+const auth_type_enum_1 = require("../auth/enums/auth-type.enum");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -33,13 +34,13 @@ let UsersController = class UsersController {
 exports.UsersController = UsersController;
 __decorate([
     (0, common_1.Post)('create'),
+    (0, auth_decorator_1.Auth)(auth_type_enum_1.AuthType.None),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "createUsers", null);
 __decorate([
-    (0, common_1.UseGuards)(acess_token_guard_1.AccessTokenGuard),
     (0, common_1.Post)('create-many'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
