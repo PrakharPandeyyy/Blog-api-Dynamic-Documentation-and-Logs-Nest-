@@ -16,13 +16,18 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("../../users/providers/users.service");
 const sign_in_provider_1 = require("./sign-in.provider");
+const refresh_tokens_provider_1 = require("./refresh-tokens.provider");
 let AuthService = class AuthService {
-    constructor(usersService, signInProvider) {
+    constructor(usersService, signInProvider, refreshTokenProvider) {
         this.usersService = usersService;
         this.signInProvider = signInProvider;
+        this.refreshTokenProvider = refreshTokenProvider;
     }
     async signIn(signInDto) {
         return this.signInProvider.signIn(signInDto);
+    }
+    async refreshTokens(refreshTokenDto) {
+        return this.refreshTokenProvider.refreshTokens(refreshTokenDto);
     }
 };
 exports.AuthService = AuthService;
@@ -30,6 +35,7 @@ exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)((0, common_1.forwardRef)(() => users_service_1.UsersService))),
     __metadata("design:paramtypes", [users_service_1.UsersService,
-        sign_in_provider_1.SignInProvider])
+        sign_in_provider_1.SignInProvider,
+        refresh_tokens_provider_1.RefreshTokensProvider])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
