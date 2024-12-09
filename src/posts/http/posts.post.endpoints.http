@@ -1,15 +1,15 @@
 POST  http://localhost:3000/posts
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJlbWFpbCI6Im1hcmtAZG9lLmNvbSIsImlhdCI6MTczMzc1NjUxMSwiZXhwIjoxNzMzNzYwMTExLCJhdWQiOiJsb2NhbGhvc3Q6MzAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.o_8S4W7k1hdRJxpe6-WthtRVDej0IbTcwu1apwcLJFg
 {
   "title": "Hello World",
   "postType": "post",
-  "slug": "h",
+  "slug": "hasdssa",
   "status": "draft",
   "content": "Hello World",
     // "tags": ["hello", "world"],
   "metaOptions":{
     "metaValue":"{\"sideBar\":true,\"footer\":true}"
     },
-    "authorId":1,
-    "tags":[4,6]
+    "tags":[1]
 }

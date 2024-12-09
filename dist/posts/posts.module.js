@@ -16,12 +16,13 @@ const post_entity_1 = require("./entities/post-entity");
 const meta_option_entity_1 = require("../meta-options/meta-option.entity");
 const tags_module_1 = require("../tags/tags.module");
 const pagination_module_1 = require("../common/pagination/pagination.module");
+const create_post_provider_1 = require("./providers/create-post.provider");
 let PostsModule = class PostsModule {
 };
 exports.PostsModule = PostsModule;
 exports.PostsModule = PostsModule = __decorate([
     (0, common_1.Module)({
-        providers: [posts_service_1.PostsService],
+        providers: [posts_service_1.PostsService, create_post_provider_1.CreatePostProvider],
         controllers: [posts_controller_1.PostsController],
         imports: [
             users_module_1.UsersModule,
