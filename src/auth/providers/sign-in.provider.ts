@@ -29,7 +29,7 @@ export class SignInProvider {
      */
     private readonly jwtService: JwtService,
     /**
-     * Inject Config
+     * Inject ConfigService
      */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,

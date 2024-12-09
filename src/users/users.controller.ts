@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { UsersService } from './providers/users.service';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto } from './dto/create-user.dto';
 import { CreateManyUsersDto } from './dto/create-many-users.dto';
+import { AccessTokenGuard } from 'src/auth/guards/acess-token/acess-token.guard';
 
 @Controller('users')
 @ApiTags('Users')
@@ -38,10 +39,13 @@ export class UsersController {
   // ) {
   //   return this.usersService.findAll(getUserParamDto, limit, page);
   // }
+
   @Post('create')
   public createUsers(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
   }
+
+  @UseGuards(AccessTokenGuard) // to apply only in a particular controller
   @Post('create-many')
   public createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
     return this.usersService.createMany(createManyUsersDto);

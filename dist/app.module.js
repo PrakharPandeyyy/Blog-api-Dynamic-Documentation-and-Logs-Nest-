@@ -21,6 +21,10 @@ const pagination_module_1 = require("./common/pagination/pagination.module");
 const app_config_1 = require("./config/app.config");
 const database_config_1 = require("./config/database.config");
 const enviroment_validation_1 = require("./config/enviroment.validation");
+const jwt_config_1 = require("./auth/config/jwt.config");
+const jwt_1 = require("@nestjs/jwt");
+const core_1 = require("@nestjs/core");
+const acess_token_guard_1 = require("./auth/guards/acess-token/acess-token.guard");
 const ENV = process.env.NODE_ENV;
 let AppModule = class AppModule {
 };
@@ -31,6 +35,8 @@ exports.AppModule = AppModule = __decorate([
             users_module_1.UsersModule,
             posts_module_1.PostsModule,
             auth_module_1.AuthModule,
+            config_1.ConfigModule.forFeature(jwt_config_1.default),
+            jwt_1.JwtModule.registerAsync(jwt_config_1.default.asProvider()),
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 envFilePath: !ENV ? '.env' : `.env.${ENV}`,
@@ -56,7 +62,13 @@ exports.AppModule = AppModule = __decorate([
             pagination_module_1.PaginationModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [
+            app_service_1.AppService,
+            {
+                provide: core_1.APP_GUARD,
+                useClass: acess_token_guard_1.AccessTokenGuard,
+            },
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
