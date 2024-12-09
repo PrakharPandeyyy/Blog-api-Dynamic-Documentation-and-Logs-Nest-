@@ -1,5 +1,6 @@
 POST http://localhost:3000/users/create
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJlbWFpbCI6Im1hcmtAZG9lLmNvbSIsImlhdCI6MTczMzc0OTc0NiwiZXhwIjoxNzMzNzUzMzQ2LCJhdWQiOiJsb2NhbGhvc3Q6MzAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.Rw9SnV-ToiJVWo3NCwuaqS5rCWYFQ11cJWs96drE-tU
 
 {
     "firstName": "John Doe",
@@ -10,7 +11,7 @@ Content-Type: application/json
 
 POST http://localhost:3000/users/create-many
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEwLCJlbWFpbCI6Im1hcmtAZG9lLmNvbSIsImlhdCI6MTczMzc0OTc0NiwiZXhwIjoxNzMzNzUzMzQ2LCJhdWQiOiJsb2NhbGhvc3Q6MzAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.Rw9SnV-ToiJVWo3NCwuaqS5rCWYFQ11cJWs96drE-tU
     
     
 {

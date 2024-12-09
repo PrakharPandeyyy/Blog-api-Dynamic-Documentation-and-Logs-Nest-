@@ -20,17 +20,11 @@ import { AccessTokenGuard } from 'src/auth/guards/acess-token/acess-token.guard'
     UsersCreateManyProvider,
     CreateUserProvider,
     FindOneUserByEmailProvider,
-    {
-      provide: APP_GUARD, // To guard entire user module , it is applied globally
-      useClass: AccessTokenGuard,
-    },
   ],
   exports: [UsersService],
   imports: [
     forwardRef(() => AuthModule),
     TypeOrmModule.forFeature([User]), // this is used to load the user entity
-    ConfigModule.forFeature(jwtConfig),
-    JwtModule.registerAsync(jwtConfig.asProvider()),
   ],
 })
 export class UsersModule {}
