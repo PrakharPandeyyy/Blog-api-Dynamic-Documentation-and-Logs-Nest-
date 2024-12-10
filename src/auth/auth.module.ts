@@ -7,12 +7,14 @@ import { BcryptProvider } from './providers/bcrypt.provider';
 import { SignInProvider } from './providers/sign-in.provider';
 import { ConfigModule } from '@nestjs/config';
 import jwtConfig from './config/jwt.config';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { GenerateTokenProvider } from './providers/generate-token.provider';
 import { RefreshTokensProvider } from './providers/refresh-tokens.provider';
+import { GoogleAuthenticationController } from './social/google-authentication.controller';
+import { GoogleAuthenticationService } from './social/providers/google-authentication.service';
 
 @Module({
-  controllers: [AuthController],
+  controllers: [AuthController, GoogleAuthenticationController],
   providers: [
     AuthService,
     {
@@ -22,6 +24,7 @@ import { RefreshTokensProvider } from './providers/refresh-tokens.provider';
     SignInProvider,
     GenerateTokenProvider,
     RefreshTokensProvider,
+    GoogleAuthenticationService,
   ],
   imports: [
     forwardRef(() => UsersModule), // for circular dependency

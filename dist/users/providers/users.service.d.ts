@@ -6,17 +6,24 @@ import { UsersCreateManyProvider } from './users-create-many.provider';
 import { CreateManyUsersDto } from '../dto/create-many-users.dto';
 import { CreateUserProvider } from './create-user.provider';
 import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
+import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
+import { CreateGoogleUserProviderTs } from './create-google-user.provider.ts';
+import { GoogleUser } from '../interfaces/google-user.interface';
 export declare class UsersService {
     private readonly userRepository;
     private readonly authService;
     private readonly usersCreateManyProvider;
     private readonly createUserProvider;
     private readonly findOneUserByEmailProvider;
-    constructor(userRepository: Repository<User>, authService: AuthService, usersCreateManyProvider: UsersCreateManyProvider, createUserProvider: CreateUserProvider, findOneUserByEmailProvider: FindOneUserByEmailProvider);
+    private readonly findOneByGoogleIdProvider;
+    private readonly createGoogleUserProvider;
+    constructor(userRepository: Repository<User>, authService: AuthService, usersCreateManyProvider: UsersCreateManyProvider, createUserProvider: CreateUserProvider, findOneUserByEmailProvider: FindOneUserByEmailProvider, findOneByGoogleIdProvider: FindOneByGoogleIdProvider, createGoogleUserProvider: CreateGoogleUserProviderTs);
     createUser(createUserDto: CreateUserDto): Promise<User>;
     findOneById(id: number): Promise<any>;
     createMany(createManyUsersDto: CreateManyUsersDto): Promise<{
         users: User[];
     }>;
     findOneByEmail(email: string): Promise<User>;
+    findOneByGoogleId(googleId: string): Promise<User>;
+    createGoogleUser(googleUser: GoogleUser): Promise<User>;
 }

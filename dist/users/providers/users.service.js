@@ -21,13 +21,17 @@ const typeorm_2 = require("@nestjs/typeorm");
 const users_create_many_provider_1 = require("./users-create-many.provider");
 const create_user_provider_1 = require("./create-user.provider");
 const find_one_user_by_email_provider_1 = require("./find-one-user-by-email.provider");
+const find_one_by_google_id_provider_1 = require("./find-one-by-google-id.provider");
+const create_google_user_provider_ts_1 = require("./create-google-user.provider.ts");
 let UsersService = class UsersService {
-    constructor(userRepository, authService, usersCreateManyProvider, createUserProvider, findOneUserByEmailProvider) {
+    constructor(userRepository, authService, usersCreateManyProvider, createUserProvider, findOneUserByEmailProvider, findOneByGoogleIdProvider, createGoogleUserProvider) {
         this.userRepository = userRepository;
         this.authService = authService;
         this.usersCreateManyProvider = usersCreateManyProvider;
         this.createUserProvider = createUserProvider;
         this.findOneUserByEmailProvider = findOneUserByEmailProvider;
+        this.findOneByGoogleIdProvider = findOneByGoogleIdProvider;
+        this.createGoogleUserProvider = createGoogleUserProvider;
     }
     async createUser(createUserDto) {
         return this.createUserProvider.createUser(createUserDto);
@@ -53,6 +57,12 @@ let UsersService = class UsersService {
     async findOneByEmail(email) {
         return await this.findOneUserByEmailProvider.findOneByEmail(email);
     }
+    async findOneByGoogleId(googleId) {
+        return await this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
+    }
+    async createGoogleUser(googleUser) {
+        return await this.createGoogleUserProvider.createGoogleUser(googleUser);
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
@@ -63,6 +73,8 @@ exports.UsersService = UsersService = __decorate([
         auth_service_1.AuthService,
         users_create_many_provider_1.UsersCreateManyProvider,
         create_user_provider_1.CreateUserProvider,
-        find_one_user_by_email_provider_1.FindOneUserByEmailProvider])
+        find_one_user_by_email_provider_1.FindOneUserByEmailProvider,
+        find_one_by_google_id_provider_1.FindOneByGoogleIdProvider,
+        create_google_user_provider_ts_1.CreateGoogleUserProviderTs])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

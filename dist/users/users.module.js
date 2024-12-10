@@ -16,6 +16,8 @@ const user_entity_1 = require("./entities/user.entity");
 const users_create_many_provider_1 = require("./providers/users-create-many.provider");
 const create_user_provider_1 = require("./providers/create-user.provider");
 const find_one_user_by_email_provider_1 = require("./providers/find-one-user-by-email.provider");
+const find_one_by_google_id_provider_1 = require("./providers/find-one-by-google-id.provider");
+const create_google_user_provider_ts_1 = require("./providers/create-google-user.provider.ts");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
@@ -27,6 +29,8 @@ exports.UsersModule = UsersModule = __decorate([
             users_create_many_provider_1.UsersCreateManyProvider,
             create_user_provider_1.CreateUserProvider,
             find_one_user_by_email_provider_1.FindOneUserByEmailProvider,
+            find_one_by_google_id_provider_1.FindOneByGoogleIdProvider,
+            create_google_user_provider_ts_1.CreateGoogleUserProviderTs,
         ],
         exports: [users_service_1.UsersService],
         imports: [
